@@ -94,7 +94,7 @@ public class AppController {
                 .stream()
                 .max(Comparator.comparingInt(o -> o.getValue().size()))
                 .map(stringListEntry -> stringListEntry.getKey() + " " + stringListEntry.getValue().size())
-                .orElseThrow();
+                .orElseThrow(() -> new NewsAPIException("problem with analysing data in getProviderWithMostArticles"));
     }
 
     public String getLongestNameOfAuthors() throws NewsAPIException {
@@ -105,7 +105,7 @@ public class AppController {
                 .map(Article::getAuthor)
                 .filter(Objects::nonNull)
                 .max(Comparator.comparing(String::length))
-                .orElseThrow();
+                .orElseThrow(() -> new NewsAPIException("problem with analysing data in getLongestNameOfAuthors"));
     }
 
     public long getCountArticlesNYTimes() throws NewsAPIException{
