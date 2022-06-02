@@ -5,13 +5,8 @@ import at.ac.fhcampuswien.controllers.NewsAPIException;
 import at.ac.fhcampuswien.downloader.ParallelDownloader;
 import at.ac.fhcampuswien.downloader.SequentialDownloader;
 import at.ac.fhcampuswien.models.Article;
-import at.ac.fhcampuswien.models.Source;
-
-import java.util.Comparator;
 import java.util.List;
-import java.util.Objects;
 import java.util.Scanner;
-import java.util.stream.Collectors;
 
 public class Menu {
     private static final String INVALID_INPUT_MESSAGE = "No valid input. Try again";
@@ -132,11 +127,7 @@ public class Menu {
     }
 
     private static void printMenu(){
-        System.out.println(getMenuText());
-    }
-
-    private static String getMenuText(){
-        return """
+        String text = """
                 *****************************
                 *   Welcome to NewsApp   *
                 *****************************
@@ -152,6 +143,8 @@ public class Menu {
                 g: Sort articles by content length
                 h: Download URLs
                 """;
+
+        System.out.println(text);
     }
 
     private static String readLine() {

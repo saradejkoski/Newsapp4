@@ -9,7 +9,6 @@ import java.io.OutputStream;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.List;
-import java.util.Objects;
 
 // Class is needed for exercise 4 - ignore for exercise 3 solution
 public abstract class Downloader {
@@ -22,7 +21,7 @@ public abstract class Downloader {
     public String saveUrl2File(String urlString) throws NewsAPIException {
         InputStream is = null;
         OutputStream os = null;
-        String fileName = "";
+        String fileName;
         try {
             URL url4download = new URL(urlString);  // Convert string to URL
             is = url4download.openStream();

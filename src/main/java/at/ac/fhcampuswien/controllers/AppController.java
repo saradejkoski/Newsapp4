@@ -113,12 +113,8 @@ public class AppController {
             throw new NewsAPIException("Load data first");
 
        return articles.stream()
-                .collect(Collectors.groupingBy(article -> article.getSource().getName()))   // aggregate to map - Map<sourcename, list<Article>>
-                .entrySet() // obtain entrySet from map to do some more operations
-                .stream()   // convert to stream again
-                .filter(x -> "New York Times".equals(x.getKey()))   // filter by Map key
-                .flatMap(x -> x.getValue().stream())    // flatten the filtered List<List<Article>> to a simple List<Article>
-                .count();
+               .filter(e -> e.getSource().getName().equals("New York Times"))
+               .count();
     }
 
     public List<Article> getArticlesShorterThan(int length) throws NewsAPIException{
@@ -135,6 +131,12 @@ public class AppController {
             throw new NewsAPIException("Load data first");
 
         return articles.stream()
+                .sorted(Comparator.comparing(Article::getDescription))
+                .sorted(Comparator.comparingInt(a -> a.getDescription().length()))
+                .collect(Collectors.toList());
+
+        /* long form
+        return articles.stream()
                 .sorted( (a1, a2) -> {
                     if(a1.getDescription().length() == a2.getDescription().length()){
                         return a1.getDescription().compareTo(a2.getDescription());
@@ -145,6 +147,7 @@ public class AppController {
                     }
                 })
                 .collect(Collectors.toList());
+        */
     }
 
     /**
