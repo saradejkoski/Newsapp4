@@ -48,6 +48,7 @@ public class AppController {
                 .filter(Objects::nonNull)
                 .collect(Collectors.toList());
 
+
         return downloader.process(urls);
     }
 

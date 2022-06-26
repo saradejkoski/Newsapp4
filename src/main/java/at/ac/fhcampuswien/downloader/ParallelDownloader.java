@@ -16,6 +16,7 @@ public class ParallelDownloader extends Downloader {
           https://www.baeldung.com/java-runnable-callable
          */
 
+
         int amountOfDownloads = 0;
         int threadCount = Runtime.getRuntime().availableProcessors();
         ExecutorService threadPool = Executors.newFixedThreadPool(threadCount);
