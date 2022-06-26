@@ -6,6 +6,7 @@ import at.ac.fhcampuswien.models.NewsResponse;
 import com.google.gson.Gson;
 import com.google.gson.JsonSyntaxException;
 import io.github.cdimascio.dotenv.Dotenv;
+import okhttp3.HttpUrl;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
@@ -13,10 +14,12 @@ import okhttp3.Response;
 import java.io.IOException;
 import java.util.Objects;
 
+
 public class NewsApi {
     public static final String DELIMITER = "&";
     private static final String URL = "https://newsapi.org/v2/%s?q=%s&apiKey=%s";
     private static final String API_KEY = Dotenv.load().get("API_TOKEN");   // read token from .env file -> add .env to .gitignore!!!
+    private static NewsApi instance;
     private OkHttpClient client;
 
     private Endpoint endpoint;
@@ -85,6 +88,11 @@ public class NewsApi {
     public Endpoint getEndpoint() {
         return endpoint;
     }
+
+    private NewsApi() {
+        client = new OkHttpClient();
+    }
+
 
     public NewsApi(String q, Endpoint endpoint){
         this.client = new OkHttpClient();
@@ -177,4 +185,6 @@ public class NewsApi {
             throw new NewsAPIException(e.getMessage());
         }
     }
+
+
 }

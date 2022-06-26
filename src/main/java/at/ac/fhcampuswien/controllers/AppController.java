@@ -7,14 +7,24 @@ import at.ac.fhcampuswien.enums.Endpoint;
 import at.ac.fhcampuswien.models.Article;
 import at.ac.fhcampuswien.models.NewsResponse;
 import at.ac.fhcampuswien.models.Source;
+import okhttp3.OkHttpClient;
 
 import java.util.*;
 import java.util.stream.Collectors;
 
 public class AppController {
     private List<Article> articles;
+    private static AppController instance = null;
 
-    public AppController() {}
+
+    private AppController(){}
+
+    public static AppController getInstanceAppController(){
+        if (instance == null){
+            instance = new AppController();
+        }
+        return instance;
+    }
 
     public void setArticles(List<Article> articles){
         this.articles = articles;
@@ -48,12 +58,13 @@ public class AppController {
         return 0;
     }
 
+
     /**
      * get the top headlines from austria via newsapi
      * @return article list
      */
     public List<Article> getTopHeadlinesAustria() {
-        NewsApi api = new NewsApi("corona", Country.at, Endpoint.TOP_HEADLINES);
+        NewsApi api = new NewsApi("Ukraine", Country.at, Endpoint.TOP_HEADLINES);
         articles = new ArrayList<>();
         try {
             NewsResponse response = api.requestData();
