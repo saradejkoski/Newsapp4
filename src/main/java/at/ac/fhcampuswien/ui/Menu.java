@@ -24,6 +24,7 @@ public class Menu {
         } while(!input.equals("q"));
     }
 
+
     private void handleInput(String input){
         switch (input) {
             case "a" -> getTopHeadlinesAustria(controller);

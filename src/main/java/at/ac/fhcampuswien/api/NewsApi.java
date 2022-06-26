@@ -93,7 +93,6 @@ public class NewsApi {
         client = new OkHttpClient();
     }
 
-
     public NewsApi(String q, Endpoint endpoint){
         this.client = new OkHttpClient();
         this.q = q;

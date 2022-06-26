@@ -58,7 +58,6 @@ public class AppController {
         return 0;
     }
 
-
     /**
      * get the top headlines from austria via newsapi
      * @return article list
