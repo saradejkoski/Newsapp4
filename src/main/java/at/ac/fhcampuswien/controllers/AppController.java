@@ -18,7 +18,9 @@ public class AppController {
 
 
     private AppController(){}
-
+    /*
+        Singleton Design Pattern.
+     */
     public static AppController getInstanceAppController(){
         if (instance == null){
             instance = new AppController();

@@ -12,7 +12,9 @@ public class Article {
     private String publishedAt;
     private String content;
 
-
+    /*
+        Build Pattern.
+     */
     // Builder is passed to constructor of Article.
     private Article(Builder builder) {
         this.author = builder.author;

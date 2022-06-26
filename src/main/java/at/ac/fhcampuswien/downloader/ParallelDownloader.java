@@ -18,14 +18,14 @@ public class ParallelDownloader extends Downloader {
 
 
         int amountOfDownloads = 0;
-        int threadCount = Runtime.getRuntime().availableProcessors();
-        ExecutorService threadPool = Executors.newFixedThreadPool(threadCount);
+        int threadCount = Runtime.getRuntime().availableProcessors();     // returns number of available Threads.
+        ExecutorService threadPool = Executors.newFixedThreadPool(threadCount); // Creates a Thread Pool that reuses a fixed number of Threads.
 
-        List<Callable<String>> callables = new ArrayList<>();
+        List<Callable<String>> callables = new ArrayList<>();  // Create a List that holds Future results.
 
         for (String url : urls) {
-            Callable<String> download = () -> saveUrl2File(url);
-            callables.add(download);
+            Callable<String> download = () -> saveUrl2File(url);  // pass asynchronous function as a lambda.
+            callables.add(download);  // pool submit returns Future objects -> add all Future objects to array.
         }
 
         try {
