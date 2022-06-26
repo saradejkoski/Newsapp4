@@ -43,6 +43,10 @@ public class AppController {
         List<String> urls = new ArrayList<>();
 
         // TODO extract urls from articles with java stream
+        urls = articles.stream()
+                .map(Article::getUrl)
+                .filter(Objects::nonNull)
+                .collect(Collectors.toList());
 
         return downloader.process(urls);
     }
