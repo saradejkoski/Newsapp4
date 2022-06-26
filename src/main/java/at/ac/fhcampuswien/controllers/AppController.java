@@ -80,8 +80,6 @@ public class AppController {
         return articles;
     }
 
-
-
     /**
      * returns all articles that do contain "bitcoin"
      * in their title from newsapi
